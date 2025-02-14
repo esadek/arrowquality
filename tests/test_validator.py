@@ -1,0 +1,48 @@
+import pyarrow as pa
+
+from arrowquality.validator import Validator
+
+pylist = [
+    {"n_legs": 2, "species": "Flamingo", "name": "Alice", "sex": "male"},
+    {"n_legs": 4, "species": "Dog", "name": "Tom", "sex": "female"},
+    {"n_legs": 0, "species": "Snake", "name": None, "sex": "female"},
+    {"n_legs": 2, "species": "Human", "name": "Steve", "sex": "male"},
+]
+table = pa.Table.from_pylist(pylist)
+validator = Validator(table)
+
+
+def test_values_of_type():
+    assert validator.values_of_type("n_legs", "int64")
+    assert validator.values_of_type("species", "string")
+    assert not validator.values_of_type("species", "double")
+
+
+def test_values_unique():
+    assert validator.values_unique("species")
+    assert not validator.values_unique("n_legs")
+
+
+def test_values_between():
+    assert validator.values_between("n_legs", 0, 4)
+    assert not validator.values_between("n_legs", 1, 2)
+
+
+def test_values_not_greater_than():
+    assert validator.values_not_greater_than("n_legs", 8)
+    assert not validator.values_not_greater_than("n_legs", 2)
+
+
+def test_values_not_less_than():
+    assert validator.values_not_less_than("n_legs", 0)
+    assert not validator.values_not_less_than("n_legs", 4)
+
+
+def test_values_in_set():
+    assert validator.values_in_set("sex", {"male", "female"})
+    assert not validator.values_in_set("species", {"Apple"})
+
+
+def test_values_not_null():
+    assert validator.values_not_null("species")
+    assert not validator.values_not_null("name")
