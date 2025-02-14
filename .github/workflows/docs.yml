@@ -1,0 +1,26 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: "Install Material for MkDocs"
+        run: pip install mkdocs-material
+
+      - name: "Build docs and push docs"
+        run: mkdocs gh-deploy --force
