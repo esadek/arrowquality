@@ -1,4 +1,4 @@
-name: Lint
+name: CI
 on: push
 jobs:
   build:
@@ -10,4 +10,4 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       - name: Run Ruff
-        run: ruff check --output-format=github .
+        run: uv run ruff check --output-format=github .
