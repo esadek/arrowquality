@@ -20,7 +20,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: "Install Material for MkDocs"
-        run: pip install mkdocs-material
+        run: pip install mkdocs-material 'mkdocstrings[python]'
 
       - name: "Build docs and push docs"
         run: mkdocs gh-deploy --force
