@@ -21,6 +21,7 @@ build-backend = "hatchling.build"
 dev = [
     "mkdocs-material>=9.6.3",
     "mkdocstrings[python]>=0.28.0",
+    "mypy>=1.15.0",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
     "ruff>=0.9.5",
@@ -28,3 +29,7 @@ dev = [
 
 [tool.ruff.lint]
 extend-select = ["I"]
+
+[[tool.mypy.overrides]]
+module = ["pyarrow.*"]
+ignore_missing_imports = true
