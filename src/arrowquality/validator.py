@@ -7,7 +7,7 @@ class Validator:
         self.table = table
 
     def values_of_type(self, column_name: str, type: str) -> bool:
-        """Check if values are of the proveded type
+        """Check if values are of the provided type
 
         Arguments:
             column_name: Name of column to check
@@ -16,7 +16,9 @@ class Validator:
         Returns:
             True or False
         """
-        return type == self.table.column(column_name).type
+        if type == self.table.column(column_name).type:
+            return True
+        return False
 
     def values_unique(self, column_name: str) -> bool:
         """Check if values are unique
@@ -28,7 +30,9 @@ class Validator:
             True or False
         """
         column = self.table.column(column_name)
-        return column.length() == len(pc.unique(column))
+        if column.length() == len(pc.unique(column)):
+            return True
+        return False
 
     def values_between(self, column_name: str, min: int, max: int) -> bool:
         """Check if values are within the provided range (inclusive of both boundaries)
@@ -44,7 +48,9 @@ class Validator:
         column = self.table.column(column_name)
         result = pc.min_max(column).as_py()
         actual_min, actual_max = result.get("min"), result.get("max")
-        return min <= actual_min and max >= actual_max
+        if min <= actual_min and max >= actual_max:
+            return True
+        return False
 
     def values_not_greater_than(self, column_name: str, limit: int) -> bool:
         """Check if values are not greater than the provided limit
@@ -57,7 +63,9 @@ class Validator:
             True or False
         """
         column = self.table.column(column_name)
-        return limit >= pc.max(column).as_py()
+        if limit >= pc.max(column).as_py():
+            return True
+        return False
 
     def values_not_less_than(self, column_name: str, limit: int) -> bool:
         """Check if values are not less than the provided limit
@@ -70,9 +78,11 @@ class Validator:
             True or False
         """
         column = self.table.column(column_name)
-        return limit <= pc.min(column).as_py()
+        if limit <= pc.min(column).as_py():
+            return True
+        return False
 
-    def values_in_set(self, column_name: str, set_: set) -> bool:
+    def values_in_set(self, column_name: str, set_: set[str | int | float]) -> bool:
         """Check if values are in the provided set
 
         Arguments:
