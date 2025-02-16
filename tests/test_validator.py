@@ -12,37 +12,37 @@ table = pa.Table.from_pylist(pylist)
 validator = Validator(table)
 
 
-def test_values_of_type():
+def test_values_of_type() -> None:
     assert validator.values_of_type("n_legs", "int64")
     assert validator.values_of_type("species", "string")
     assert not validator.values_of_type("species", "double")
 
 
-def test_values_unique():
+def test_values_unique() -> None:
     assert validator.values_unique("species")
     assert not validator.values_unique("n_legs")
 
 
-def test_values_between():
+def test_values_between() -> None:
     assert validator.values_between("n_legs", 0, 4)
     assert not validator.values_between("n_legs", 1, 2)
 
 
-def test_values_not_greater_than():
+def test_values_not_greater_than() -> None:
     assert validator.values_not_greater_than("n_legs", 8)
     assert not validator.values_not_greater_than("n_legs", 2)
 
 
-def test_values_not_less_than():
+def test_values_not_less_than() -> None:
     assert validator.values_not_less_than("n_legs", 0)
     assert not validator.values_not_less_than("n_legs", 4)
 
 
-def test_values_in_set():
+def test_values_in_set() -> None:
     assert validator.values_in_set("sex", {"male", "female"})
     assert not validator.values_in_set("species", {"Apple"})
 
 
-def test_values_not_null():
+def test_values_not_null() -> None:
     assert validator.values_not_null("species")
     assert not validator.values_not_null("name")
