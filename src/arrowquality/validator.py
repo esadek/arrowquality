@@ -52,6 +52,36 @@ class Validator:
             return True
         return False
 
+    def values_greater_than(self, column_name: str, limit: int) -> bool:
+        """Check if values are greater than the provided limit
+
+        Arguments:
+            column_name: Name of column to check
+            limit: Limit value
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        if limit < pc.max(column).as_py():
+            return True
+        return False
+
+    def values_less_than(self, column_name: str, limit: int) -> bool:
+        """Check if values are less than the provided limit
+
+        Arguments:
+            column_name: Name of column to check
+            limit: Limit value
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        if limit > pc.max(column).as_py():
+            return True
+        return False
+
     def values_not_greater_than(self, column_name: str, limit: int) -> bool:
         """Check if values are not greater than the provided limit
 

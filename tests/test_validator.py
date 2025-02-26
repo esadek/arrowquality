@@ -28,6 +28,16 @@ def test_values_between() -> None:
     assert not validator.values_between("n_legs", 1, 2)
 
 
+def test_values_greater_than() -> None:
+    assert validator.values_greater_than("n_legs", -1)
+    assert not validator.values_greater_than("n_legs", 5)
+
+
+def test_values_less_than() -> None:
+    assert validator.values_less_than("n_legs", 10)
+    assert not validator.values_less_than("n_legs", 3)
+
+
 def test_values_not_greater_than() -> None:
     assert validator.values_not_greater_than("n_legs", 8)
     assert not validator.values_not_greater_than("n_legs", 2)
