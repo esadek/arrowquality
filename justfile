@@ -13,3 +13,6 @@ format:
 
 docs:
     uv run mkdocs serve
+
+clean:
+    rm -rf */__pycache__ */*/__pycache__ .mypy_cache .pytest_cache .ruff_cache .coverage
