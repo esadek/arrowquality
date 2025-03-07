@@ -3,6 +3,13 @@ site_url: https://mydomain.org/mysite
 site_description: Project documentation with Markdown.
 site_author: Emil Sadek
 
+nav:
+  - index.md
+  - getting_started.md
+  - quality_rules.md
+  - supported_formats.md
+  - api_reference.md
+
 theme:
   name: material
   features:
