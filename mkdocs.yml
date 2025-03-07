@@ -3,6 +3,8 @@ site_url: https://mydomain.org/mysite
 site_description: Project documentation with Markdown.
 site_author: Emil Sadek
 
+repo_url: https://github.com/esadek/arrowquality
+
 nav:
   - index.md
   - getting_started.md
