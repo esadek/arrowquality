@@ -1,3 +1,5 @@
+from typing import Set, Union
+
 import pyarrow as pa
 import pyarrow.compute as pc
 
@@ -112,7 +114,9 @@ class Validator:
             return True
         return False
 
-    def values_in_set(self, column_name: str, set_: set[str | int | float]) -> bool:
+    def values_in_set(
+        self, column_name: str, set_: Set[Union[str, int, float]]
+    ) -> bool:
         """Check if values are in the provided set
 
         Arguments:
