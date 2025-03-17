@@ -18,3 +18,6 @@ wheels/
 
 # mypy
 .mypy_cache/
+
+# Nox
+.nox/
