@@ -1,5 +1,11 @@
+default:
+    just --list
+
 test:
-    uv run pytest
+    uv run pytest -v
+
+test-all:
+    uv run nox -s tests
 
 coverage:
     uv run pytest --cov=src
@@ -15,4 +21,5 @@ docs:
     uv run mkdocs serve
 
 clean:
-    rm -rf */__pycache__ */*/__pycache__ .mypy_cache .pytest_cache .ruff_cache .coverage
+    rm -rf __pycache__ */__pycache__ */*/__pycache__
+    rm -rf .pytest_cache .ruff_cache .mypy_cache .nox .coverage

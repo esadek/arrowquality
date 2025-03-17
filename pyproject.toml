@@ -22,6 +22,7 @@ dev = [
     "mkdocs-material>=9.6.3",
     "mkdocstrings[python]>=0.28.0",
     "mypy>=1.15.0",
+    "nox>=2025.2.9",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
     "ruff>=0.9.5",
