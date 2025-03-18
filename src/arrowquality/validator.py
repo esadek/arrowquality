@@ -140,3 +140,50 @@ class Validator:
         """
         column = self.table.column(column_name)
         return not pc.any(column.is_null()).as_py()
+
+    def values_stddev_greater_than(self, column_name: str, limit: int) -> bool:
+        """Check if standard deviation of values is greater than the provided limit
+
+        Arguments:
+            column_name: Name of column to check
+            limit: Limit value
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        if limit < pc.stddev(column).as_py():
+            return True
+        return False
+
+    def values_stddev_less_than(self, column_name: str, limit: int) -> bool:
+        """Check if standard deviation of values is less than the provided limit
+
+        Arguments:
+            column_name: Name of column to check
+            limit: Limit value
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        if limit > pc.stddev(column).as_py():
+            return True
+        return False
+
+    def values_stddev_between(self, column_name: str, min: int, max: int) -> bool:
+        """Check if standard deviation of values is within the provided range (inclusive of both boundaries)
+
+        Arguments:
+            column_name: Name of column to check
+            min: Minimum limit
+            max: Maximum limit
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        stddev = pc.stddev(column).as_py()
+        if min <= stddev and max >= stddev:
+            return True
+        return False

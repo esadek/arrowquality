@@ -56,3 +56,18 @@ def test_values_in_set() -> None:
 def test_values_not_null() -> None:
     assert validator.values_not_null("species")
     assert not validator.values_not_null("name")
+
+
+def test_values_stddev_greater_than() -> None:
+    assert validator.values_stddev_greater_than("n_legs", 0)
+    assert not validator.values_stddev_greater_than("n_legs", 2)
+
+
+def test_values_stddev_less_than() -> None:
+    assert validator.values_stddev_less_than("n_legs", 2)
+    assert not validator.values_stddev_less_than("n_legs", 0)
+
+
+def test_values_stddev_between() -> None:
+    assert validator.values_stddev_between("n_legs", 1, 2)
+    assert not validator.values_stddev_between("n_legs", 2, 3)
