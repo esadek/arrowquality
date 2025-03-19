@@ -86,3 +86,9 @@ def test_values_mode_between() -> None:
 def test_values_median_between() -> None:
     assert validator.values_median_between("n_legs", 1, 4)
     assert not validator.values_median_between("n_legs", 0, 1)
+
+
+def test_values_match_regex() -> None:
+    pattern = r"^[A-Z][a-z]+$"
+    assert validator.values_match_regex("species", pattern)
+    assert not validator.values_match_regex("sex", pattern)

@@ -238,3 +238,17 @@ class Validator:
         if min <= median and max >= median:
             return True
         return False
+
+    def values_match_regex(self, column_name: str, pattern: str) -> bool:
+        """Check if values match the provided regex pattern
+
+        Arguments:
+            column_name: Name of column to check
+            pattern: Regex pattern
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        match_results = pc.match_substring_regex(column, pattern)
+        return bool(pc.all(match_results).as_py())
