@@ -77,6 +77,12 @@ def test_values_mean_between() -> None:
     assert validator.values_mean_between("n_legs", 1, 4)
     assert not validator.values_mean_between("n_legs", 0, 1)
 
+
 def test_values_mode_between() -> None:
     assert validator.values_mode_between("n_legs", 1, 4)
     assert not validator.values_mode_between("n_legs", 0, 1)
+
+
+def test_values_median_between() -> None:
+    assert validator.values_median_between("n_legs", 1, 4)
+    assert not validator.values_median_between("n_legs", 0, 1)

@@ -221,3 +221,20 @@ class Validator:
         if min <= mode and max >= mode:
             return True
         return False
+
+    def values_median_between(self, column_name: str, min: int, max: int) -> bool:
+        """Check if approximate median of values is within the provided range (inclusive of both boundaries)
+
+        Arguments:
+            column_name: Name of column to check
+            min: Minimum limit
+            max: Maximum limit
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        median = pc.approximate_median(column).as_py()
+        if min <= median and max >= median:
+            return True
+        return False
