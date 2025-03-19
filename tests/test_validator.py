@@ -71,3 +71,12 @@ def test_values_stddev_less_than() -> None:
 def test_values_stddev_between() -> None:
     assert validator.values_stddev_between("n_legs", 1, 2)
     assert not validator.values_stddev_between("n_legs", 2, 3)
+
+
+def test_values_mean_between() -> None:
+    assert validator.values_mean_between("n_legs", 1, 4)
+    assert not validator.values_mean_between("n_legs", 0, 1)
+
+def test_values_mode_between() -> None:
+    assert validator.values_mode_between("n_legs", 1, 4)
+    assert not validator.values_mode_between("n_legs", 0, 1)

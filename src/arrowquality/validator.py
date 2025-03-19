@@ -187,3 +187,37 @@ class Validator:
         if min <= stddev and max >= stddev:
             return True
         return False
+
+    def values_mean_between(self, column_name: str, min: int, max: int) -> bool:
+        """Check if mean of values is within the provided range (inclusive of both boundaries)
+
+        Arguments:
+            column_name: Name of column to check
+            min: Minimum limit
+            max: Maximum limit
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        mean = pc.mean(column).as_py()
+        if min <= mean and max >= mean:
+            return True
+        return False
+
+    def values_mode_between(self, column_name: str, min: int, max: int) -> bool:
+        """Check if mode of values is within the provided range (inclusive of both boundaries)
+
+        Arguments:
+            column_name: Name of column to check
+            min: Minimum limit
+            max: Maximum limit
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        mode = pc.mode(column).to_pylist()[0]["mode"]
+        if min <= mode and max >= mode:
+            return True
+        return False
