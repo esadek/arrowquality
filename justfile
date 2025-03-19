@@ -12,7 +12,12 @@ coverage:
 
 lint:
     uv run ruff check --fix
+
+types:
     uv run mypy src/arrowquality tests --strict
+
+types-all:
+    uv run nox -s types
 
 format:
     uv run ruff format

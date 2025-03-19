@@ -11,3 +11,9 @@ nox.options.reuse_venv = "yes"
 def tests(session: nox.Session) -> None:
     session.install(".", "pytest")
     session.run("pytest")
+
+
+@nox.session(python=[PYTHON_VERSIONS[0], PYTHON_VERSIONS[-1]])
+def types(session: nox.Session) -> None:
+    session.install("mypy")
+    session.run("mypy", "src/arrowquality", "tests", "--strict")
