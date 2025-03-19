@@ -252,3 +252,20 @@ class Validator:
         column = self.table.column(column_name)
         match_results = pc.match_substring_regex(column, pattern)
         return bool(pc.all(match_results).as_py())
+
+    def values_sum_between(self, column_name: str, min: int, max: int) -> bool:
+        """Check if sum of values is within the provided range (inclusive of both boundaries)
+
+        Arguments:
+            column_name: Name of column to check
+            min: Minimum limit
+            max: Maximum limit
+
+        Returns:
+            True or False
+        """
+        column = self.table.column(column_name)
+        sum = pc.sum(column).as_py()
+        if min <= sum and max >= sum:
+            return True
+        return False

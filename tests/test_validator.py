@@ -92,3 +92,8 @@ def test_values_match_regex() -> None:
     pattern = r"^[A-Z][a-z]+$"
     assert validator.values_match_regex("species", pattern)
     assert not validator.values_match_regex("sex", pattern)
+
+
+def test_values_sum_between() -> None:
+    assert validator.values_sum_between("n_legs", 5, 10)
+    assert not validator.values_sum_between("n_legs", 0, 1)
